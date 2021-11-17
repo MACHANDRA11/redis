@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: <service Name>
+spec:
+  type: LoadBalancer
+  selector:
+    app: <label name (Provide the same label which u gave for deployment,;all labels should be same)>
+  ports:
+  - port: 80
+    targetPort: 8080
+    protocol: TCP

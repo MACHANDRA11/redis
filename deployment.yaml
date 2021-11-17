@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: <name of deployment>
+  labels:
+    app: <wordpress>
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: <wordpress>
+    spec:
+      containers:
+      - name: <container name>
+        image: "gcr.io/<PROJECT_ID>/<Image_NAME:TAG>"
+        env:
+        - name: REDISHOST
+          valueFrom:
+            configMapKeyRef:
+              name: redishost
+              key: REDISHOST
+        ports:
+        - name: http
+          containerPort: 8080
